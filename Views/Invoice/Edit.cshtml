@@ -1,0 +1,76 @@
+﻿@model POIS1WEB.Models.InvoiceVm
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+}
+
+<h1>Edit</h1>
+
+<h4>InvoiceVm</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ID" />
+            <div class="form-group">
+                <label asp-for="VendorId" class="control-label"></label>
+                @Html.DropDownListFor(q => q.VendorId, new SelectList(Model.Vendors, "Value", "Text"), "Select Vendor Name", new { @class = "form-control" })
+                <span asp-validation-for="VendorId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ItemsId" class="control-label"></label>
+                @Html.DropDownListFor(q => q.ItemsId, new SelectList(Model.Item, "Value", "Text"), "Select Item Name", new { @class = "form-control" })
+                <span asp-validation-for="ItemsId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ItemAmount" class="control-label"></label>
+                <input asp-for="ItemAmount" class="form-control" />
+                <span asp-validation-for="ItemAmount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ItemCost" class="control-label"></label>
+                @Html.DropDownListFor(q => q.ItemCost, new SelectList(Model.Itemcost, "Value", "Text"), "Select Corresponding Item Cost", new { @class = "form-control" })
+                <span asp-validation-for="ItemCost" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PurchaseOrderNumber" class="control-label"></label>
+                @Html.DropDownListFor(q => q.PurchaseOrderNumber, new SelectList(Model.PurchaseOrders, "Value", "Text"), "Select Purchase Order Number", new { @class = "form-control" })
+                <span asp-validation-for="PurchaseOrderNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ApprovalDate" class="control-label"></label>
+                <input asp-for="ApprovalDate" class="form-control" />
+                <span asp-validation-for="ApprovalDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InvoiceNumber" class="control-label"></label>
+                <input asp-for="InvoiceNumber" class="form-control" />
+                <span asp-validation-for="InvoiceNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateForPayment" class="control-label"></label>
+                <input asp-for="DateForPayment" class="form-control" />
+                <span asp-validation-for="DateForPayment" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="total" class="control-label"></label>
+                <input asp-for="total" class="form-control" />
+                <span asp-validation-for="total" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

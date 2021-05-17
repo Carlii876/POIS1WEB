@@ -1,0 +1,70 @@
+﻿@model POIS1WEB.Models.PurchaseOrderVm
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+}
+
+<h1>Create</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="VendorId" class="control-label"></label>
+                @Html.DropDownListFor( q=> q.VendorId,new SelectList(Model.Vendors,"Value","Text"),"Select Vendor Name", new { @class = "form-control"})
+            <span asp-validation-for="VendorId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ItemsId" class="control-label"></label>
+                @Html.DropDownListFor(q => q.ItemsId, new SelectList(Model.Item, "Value", "Text"), "Select Item Name", new { @class = "form-control" })
+            <span asp-validation-for="ItemsId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ItemAmount" class="control-label"></label>
+                <input asp-for="ItemAmount" class="form-control" />
+                <span asp-validation-for="ItemAmount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ItemCost" class="control-label"></label>
+                <input asp-for="ItemCost" class="form-control" />
+                <span asp-validation-for="ItemCost" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="PurchaseOrderNumber" class="control-label"></label>
+                <input asp-for="PurchaseOrderNumber" class="form-control" />
+                <span asp-validation-for="PurchaseOrderNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ApprovalDate" class="control-label"></label>
+                <input asp-for="ApprovalDate" class="form-control datepicker" />
+                <span asp-validation-for="ApprovalDate" class="text-danger "></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Total" class="control-label"></label>
+                <input asp-for="Total" class="form-control" />
+                <span asp-validation-for="Total" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        <script>
+  $( function() {
+      $(".datepicker").datepicker({dateformat: "yy-mm-dd"});
+  } );
+        </script>}
+}
